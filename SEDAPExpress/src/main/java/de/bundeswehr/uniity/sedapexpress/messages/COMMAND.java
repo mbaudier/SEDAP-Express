@@ -185,6 +185,20 @@ public class COMMAND extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default COMMAND message
+     */
+    public COMMAND() {
+
+	super(null, null, null, null, null, null);
+
+	this.recipient = null;
+	this.cmdId = null;
+	this.cmdFlag = null;
+	this.cmdType = null;
+	this.cmdTypeDependentParameters = null;
+    }
+
+    /**
      * Instantiate a new COMMAND message
      *
      * @param number

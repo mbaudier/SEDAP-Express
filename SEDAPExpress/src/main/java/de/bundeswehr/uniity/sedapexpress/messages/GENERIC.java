@@ -73,6 +73,18 @@ public class GENERIC extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default GENERIC message
+     */
+    public GENERIC() {
+
+	super(null, null, null, null, null, null);
+
+	this.contentType = null;
+	this.encoding = null;
+	this.content = null;
+    }
+
+    /**
      * Instantiate a new GENERIC message
      *
      * @param number

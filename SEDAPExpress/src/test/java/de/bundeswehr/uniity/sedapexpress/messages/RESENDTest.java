@@ -23,7 +23,7 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
-package de.bundeswehr.mese.sedapexpress.messages;
+package de.bundeswehr.uniity.sedapexpress.messages;
 
 import java.util.Arrays;
 import java.util.Iterator;

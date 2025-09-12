@@ -130,7 +130,8 @@ public class SampleTCPServer implements SEDAPExpressSubscriber {
 	}
 
 	else if (message instanceof STATUS status) {
-	    // Write here your own processing code
+
+	    System.out.println("Akku:" + status.getBatterieLevels().get(0));
 	}
 
 	else

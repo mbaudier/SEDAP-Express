@@ -68,6 +68,18 @@ public class ACKNOWLEDGE extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default ACKNOWLEDGE message
+     */
+    public ACKNOWLEDGE() {
+
+	super(null, null, null, null, null, null);
+
+	this.recipient = null;
+	this.typeOfTheMessage = null;
+	this.numberOfTheMessage = null;
+    }
+
+    /**
      * Instantiate a new ACKNOWLEDGE message
      *
      * @param number

@@ -48,6 +48,16 @@ public class TIMESYNC extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default TIMESYNC message
+     */
+    public TIMESYNC() {
+
+	super(null, null, null, null, null, null);
+
+	this.timestamp = null;
+    }
+
+    /**
      * Instantiate the initial TIMESYNC message
      *
      * @param number

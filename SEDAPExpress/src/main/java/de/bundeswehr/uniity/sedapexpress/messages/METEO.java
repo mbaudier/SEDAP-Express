@@ -165,6 +165,29 @@ public class METEO extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default METEO message
+     */
+    public METEO() {
+
+	super(null, null, null, null, null, null);
+
+	this.speedThroughWater = null;
+	this.waterSpeed = null;
+	this.waterDirection = null;
+	this.waterTemperature = null;
+	this.waterDepth = null;
+	this.airTemperature = null;
+	this.dewPoint = null;
+	this.humidityRel = null;
+	this.pressure = null;
+	this.windSpeed = null;
+	this.windDirection = null;
+	this.visibility = null;
+	this.cloudHeight = null;
+	this.cloudCover = null;
+    }
+
+    /**
      * Instantiate a new METEO message
      *
      * @param number

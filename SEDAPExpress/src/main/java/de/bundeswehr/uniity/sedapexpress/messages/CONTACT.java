@@ -299,6 +299,38 @@ public class CONTACT extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default CONTACT message
+     */
+    public CONTACT() {
+
+	super(null, null, null, null, null, null);
+
+	this.contactID = null;
+	this.deleteFlag = null;
+	this.latitude = null;
+	this.longitude = null;
+	this.altitude = null;
+	this.relativeXDistance = null;
+	this.relativeYDistance = null;
+	this.relativeZDistance = null;
+	this.speed = null;
+	this.course = null;
+	this.heading = null;
+	this.roll = null;
+	this.pitch = null;
+	this.width = null;
+	this.length = null;
+	this.height = null;
+	this.name = null;
+	this.source = null;
+	this.sidc = null;
+	this.mmsi = null;
+	this.icao = null;
+	this.imageData = null;
+	this.comment = null;
+    }
+
+    /**
      * Instantiate a new CONTACT message
      * 
      * @param number

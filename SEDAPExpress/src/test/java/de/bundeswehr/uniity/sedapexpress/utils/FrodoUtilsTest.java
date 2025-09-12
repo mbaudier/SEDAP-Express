@@ -23,7 +23,7 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
-package de.bundeswehr.mese.sedapexpress.utils;
+package de.bundeswehr.uniity.sedapexpress.utils;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -35,28 +35,28 @@ import java.security.spec.InvalidParameterSpecException;
 import java.util.HexFormat;
 
 import org.bouncycastle.jcajce.SecretKeyWithEncapsulation;
-import org.bouncycastle.pqc.jcajce.spec.KyberParameterSpec;
+import org.bouncycastle.pqc.jcajce.spec.FrodoParameterSpec;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import de.bundeswehr.uniity.sedapexpress.utils.EncryptionUtils.DHKEMKeyLength;
-import de.bundeswehr.uniity.sedapexpress.utils.KyberUtils;
+import de.bundeswehr.uniity.sedapexpress.utils.FrodoUtils;
 
-class KyberUtilsTest {
+class FrodoUtilsTest {
 
     @Test
-    void testKyberKEM512() throws InvalidParameterSpecException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, InvalidKeySpecException {
+    void testFrodoKEM640() throws InvalidParameterSpecException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, InvalidKeySpecException {
 
 	for (DHKEMKeyLength keyLength : DHKEMKeyLength.values()) {
 
-	    KeyPair pairServer = KyberUtils.generateKeyPair(KyberParameterSpec.kyber512);
+	    KeyPair pairServer = FrodoUtils.generateKeyPair(FrodoParameterSpec.frodokem640aes);
 
-	    SecretKeyWithEncapsulation encapsulation = KyberUtils.generateSharedSecretKeyWithEncapsulation(pairServer.getPublic(), keyLength);
+	    SecretKeyWithEncapsulation encapsulation = FrodoUtils.generateSharedSecretKeyWithEncapsulation(pairServer.getPublic(), keyLength);
 
 	    byte[] secretClient = encapsulation.getEncoded();
 	    byte[] encapsulatedKey = encapsulation.getEncapsulation();
 
-	    byte[] secretServer = KyberUtils.generateSharedSecretKeyFromEncapsulation(pairServer.getPrivate(), encapsulatedKey, keyLength);
+	    byte[] secretServer = FrodoUtils.generateSharedSecretKeyFromEncapsulation(pairServer.getPrivate(), encapsulatedKey, keyLength);
 
 	    Assertions.assertArrayEquals(secretClient, secretServer);
 
@@ -67,18 +67,18 @@ class KyberUtilsTest {
     }
 
     @Test
-    void testKyberKEM768() throws InvalidParameterSpecException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, InvalidKeySpecException {
+    void testFrodoKEM976() throws InvalidParameterSpecException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, InvalidKeySpecException {
 
 	for (DHKEMKeyLength keyLength : DHKEMKeyLength.values()) {
 
-	    KeyPair pairServer = KyberUtils.generateKeyPair(KyberParameterSpec.kyber768);
+	    KeyPair pairServer = FrodoUtils.generateKeyPair(FrodoParameterSpec.frodokem976aes);
 
-	    SecretKeyWithEncapsulation encapsulation = KyberUtils.generateSharedSecretKeyWithEncapsulation(pairServer.getPublic(), keyLength);
+	    SecretKeyWithEncapsulation encapsulation = FrodoUtils.generateSharedSecretKeyWithEncapsulation(pairServer.getPublic(), keyLength);
 
 	    byte[] secretClient = encapsulation.getEncoded();
 	    byte[] encapsulatedKey = encapsulation.getEncapsulation();
 
-	    byte[] secretServer = KyberUtils.generateSharedSecretKeyFromEncapsulation(pairServer.getPrivate(), encapsulatedKey, keyLength);
+	    byte[] secretServer = FrodoUtils.generateSharedSecretKeyFromEncapsulation(pairServer.getPrivate(), encapsulatedKey, keyLength);
 
 	    Assertions.assertArrayEquals(secretClient, secretServer);
 
@@ -89,18 +89,18 @@ class KyberUtilsTest {
     }
 
     @Test
-    void testKyberKEM1024() throws InvalidParameterSpecException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, InvalidKeySpecException {
+    void testFrodoKEM1344() throws InvalidParameterSpecException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, InvalidKeySpecException {
 
 	for (DHKEMKeyLength keyLength : DHKEMKeyLength.values()) {
 
-	    KeyPair pairServer = KyberUtils.generateKeyPair(KyberParameterSpec.kyber1024);
+	    KeyPair pairServer = FrodoUtils.generateKeyPair(FrodoParameterSpec.frodokem1344aes);
 
-	    SecretKeyWithEncapsulation encapsulation = KyberUtils.generateSharedSecretKeyWithEncapsulation(pairServer.getPublic(), keyLength);
+	    SecretKeyWithEncapsulation encapsulation = FrodoUtils.generateSharedSecretKeyWithEncapsulation(pairServer.getPublic(), keyLength);
 
 	    byte[] secretClient = encapsulation.getEncoded();
 	    byte[] encapsulatedKey = encapsulation.getEncapsulation();
 
-	    byte[] secretServer = KyberUtils.generateSharedSecretKeyFromEncapsulation(pairServer.getPrivate(), encapsulatedKey, keyLength);
+	    byte[] secretServer = FrodoUtils.generateSharedSecretKeyFromEncapsulation(pairServer.getPrivate(), encapsulatedKey, keyLength);
 
 	    Assertions.assertArrayEquals(secretClient, secretServer);
 

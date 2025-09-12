@@ -263,6 +263,28 @@ public class STATUS extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default STATUS message
+     */
+    public STATUS() {
+
+	super(null, null, null, null, null, null);
+
+	this.tecState = null;
+	this.opsState = null;
+	this.ammunitionLevels = null;
+	this.fuelLevels = null;
+	this.batterieLevels = null;
+	this.ammunitionLevelNames = null;
+	this.fuelLevelNames = null;
+	this.batterieLevelNames = null;
+	this.cmdId = null;
+	this.cmdState = null;
+	this.hostname = null;
+	this.mediaUrls = null;
+	this.freeText = null;
+    }
+
+    /**
      * Instantiate a new STATUS message
      *
      * @param number

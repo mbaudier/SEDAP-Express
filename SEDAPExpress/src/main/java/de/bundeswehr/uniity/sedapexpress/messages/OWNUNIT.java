@@ -134,6 +134,25 @@ public class OWNUNIT extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default OWNUNIT message
+     */
+    public OWNUNIT() {
+
+	super(null, null, null, null, null, null);
+
+	this.latitude = null;
+	this.longitude = null;
+	this.altitude = null;
+	this.speed = null;
+	this.course = null;
+	this.heading = null;
+	this.roll = null;
+	this.pitch = null;
+	this.name = null;
+	this.sidc = null;
+    }
+
+    /**
      * Instantiate a new OWNUNIT message
      *
      * @param number

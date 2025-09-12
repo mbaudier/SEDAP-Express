@@ -15,7 +15,7 @@
  *
  * This source code and it's parts is classified as OFFEN / NATO UNCLASSIFIED!
  *******************************************************************************/
-package de.bundeswehr.mese.sedapexpress.utils;
+package de.bundeswehr.uniity.sedapexpress.utils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -59,9 +59,8 @@ public class HEARTBEAT extends SEDAPExpressMessage {
      */
     public HEARTBEAT(Byte number, Long time, String sender, Classification classification, Acknowledgement acknowledgement, String mac) {
 
-	super(number, time, sender, classification, acknowledgement, mac);
+	this(number, time, sender, classification, acknowledgement, mac, null);
 
-	this.recipient = null;
     }
 
     /**
@@ -83,11 +82,13 @@ public class HEARTBEAT extends SEDAPExpressMessage {
     }
 
     /**
-     *
+     * Instantiate a new default HEARTBEAT message
      */
     public HEARTBEAT() {
 
-	super();
+	super(null, null, null, null, null, null);
+
+	this.recipient = null;
     }
 
     /**

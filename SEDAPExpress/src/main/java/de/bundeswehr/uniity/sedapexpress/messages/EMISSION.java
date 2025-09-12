@@ -388,6 +388,33 @@ public class EMISSION extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default EMISSION message
+     */
+    public EMISSION() {
+
+	super(null, null, null, null, null, null);
+
+	this.emissionID = null;
+	this.deleteFlag = null;
+	this.sensorLatitude = null;
+	this.sensorLongitude = null;
+	this.sensorAltitude = null;
+	this.emitterLatitude = null;
+	this.emitterLongitude = null;
+	this.emitterAltitude = null;
+	this.bearing = null;
+	this.frequencies = null;
+	this.bandwidth = null;
+	this.power = null;
+	this.freqAgility = null;
+	this.prfAgility = null;
+	this.function = null;
+	this.spotNumber = null;
+	this.sidc = null;
+	this.comment = null;
+    }
+
+    /**
      * Instantiate a new EMISSION message
      *
      * @param number

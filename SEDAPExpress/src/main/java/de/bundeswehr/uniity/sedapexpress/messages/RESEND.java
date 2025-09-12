@@ -68,6 +68,19 @@ public class RESEND extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default RESEND message
+     */
+    public RESEND() {
+
+	super(null, null, null, null, null, null);
+
+	this.recipient = null;
+	this.nameOfTheMissingMessage = null;
+	this.numberOfTheMissingMessage = null;
+
+    }
+
+    /**
      * Instantiate a new RESEND message
      *
      * @param number

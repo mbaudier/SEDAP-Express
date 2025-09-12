@@ -23,7 +23,7 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
-package de.bundeswehr.mese.sedapexpress.utils;
+package de.bundeswehr.uniity.sedapexpress.utils;
 
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;

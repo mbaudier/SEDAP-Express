@@ -170,6 +170,24 @@ public class KEYEXCHANGE extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default KEYEXCHANGE message
+     */
+    public KEYEXCHANGE() {
+
+	super(null, null, null, null, null, null);
+
+	this.recipient = null;
+	this.algorithmType = null;
+	this.phase = null;
+	this.keyLengthSharedSecret = null;
+	this.keyLengthDHKEM = null;
+	this.primeNumber = null;
+	this.naturalNumber = null;
+	this.iv = null;
+	this.publicKey = null;
+    }
+
+    /**
      * Instantiate a new KEYEXCHANGE message
      * 
      * @param number
@@ -191,7 +209,9 @@ public class KEYEXCHANGE extends SEDAPExpressMessage {
     public KEYEXCHANGE(Byte number, Long time, String sender, Classification classification, Acknowledgement acknowledgement, String mac, String recipient,
 	    AlgorithmType algorithmType, Integer phase, Integer keyLengthSharedSecret, Integer keyLengthDHKEM,
 	    BigInteger primeNumber, BigInteger naturalNumber, Long iv, PublicKey publicKey) {
+
 	super(number, time, sender, classification, acknowledgement, mac);
+
 	this.recipient = recipient;
 	this.algorithmType = algorithmType;
 	this.phase = phase;

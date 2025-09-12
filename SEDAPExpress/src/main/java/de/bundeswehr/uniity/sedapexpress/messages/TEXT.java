@@ -123,6 +123,20 @@ public class TEXT extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default TEXT message
+     */
+    public TEXT() {
+
+	super(null, null, null, null, null, null);
+
+	this.recipient = null;
+	this.type = null;
+	this.encoding = null;
+	this.textContent = null;
+	this.reference = null;
+    }
+
+    /**
      * Instantiate a new TEXT message
      * 
      * @param number

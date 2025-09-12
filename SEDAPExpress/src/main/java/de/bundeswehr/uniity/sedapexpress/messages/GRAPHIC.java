@@ -191,6 +191,23 @@ public class GRAPHIC extends SEDAPExpressMessage {
     }
 
     /**
+     * Instantiate a new default GRAPHIC message
+     */
+    public GRAPHIC() {
+
+	super(null, null, null, null, null, null);
+
+	this.graphicType = null;
+	this.lineWidth = null;
+	this.lineColor = null;
+	this.fillColor = null;
+	this.textColor = null;
+	this.encoding = null;
+	this.annotation = null;
+	this.graphicObject = null;
+    }
+
+    /**
      * Instantiate a new GRAPHIC message
      * 
      * @param number
