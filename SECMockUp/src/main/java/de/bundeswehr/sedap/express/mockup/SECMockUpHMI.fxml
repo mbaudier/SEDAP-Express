@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.bundeswehr.mese.sedapexpress.controls.SEDAPExpressLoggingArea?>
+<?import de.bundeswehr.uniity.sedapexpress.controls.SEDAPExpressLoggingArea?>
 <?import javafx.embed.swing.SwingNode?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
