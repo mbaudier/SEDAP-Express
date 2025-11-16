@@ -4,6 +4,10 @@ module secmockup {
 
     opens de.bundeswehr.sedap.express.mockup;
 
+    exports org.argeo.sim.sedap.express.mockup;
+
+    opens org.argeo.sim.sedap.express.mockup;
+
     requires java.desktop;
     requires javafx.swing;
     requires transitive jdk.httpserver;
