@@ -1,3 +1,0 @@
-//Fügt die Reads für die parametrisierten Tests hinzu
---add-reads
-    MessageTool=org.junit.jupiter.params
