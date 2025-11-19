@@ -886,7 +886,7 @@ public class SIDCCodes {
 	    "ibn---|Seaport/Naval base",
 	    "it----|Transport facility",
 	    "ix----|Medical facility",
-	    "ixh---|Hospital",
+	    "ixh---|Hospital"
 
     };
     public static final List<String> groundCodesList = Arrays.asList(SIDCCodes.groundCodesArray);

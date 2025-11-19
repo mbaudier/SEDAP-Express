@@ -31,7 +31,6 @@ import java.util.Iterator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import de.bundeswehr.uniity.sedapexpress.messages.CONTACT;
 import de.bundeswehr.uniity.sedapexpress.messages.CONTACT.Source;
 import de.bundeswehr.uniity.sedapexpress.messages.SEDAPExpressMessage.Acknowledgement;
 import de.bundeswehr.uniity.sedapexpress.messages.SEDAPExpressMessage.Classification;
@@ -106,7 +105,7 @@ class CONTACTTest {
 	Assertions.assertArrayEquals("sfapmf---------".toCharArray(), contact.getSIDC());
 	Assertions.assertEquals("221333201", contact.getMMSI());
 	Assertions.assertEquals("FA550C", contact.getICAO());
-	Assertions.assertArrayEquals(this.imageData, contact.getImageData());
+	Assertions.assertArrayEquals(this.imageData, contact.getMultimediaData());
 	Assertions.assertEquals("This is a test track", contact.getComment());
 
 	final CONTACT contact2 = new CONTACT((byte) 0x6A, 85435438782L, "59CE", Classification.Unclas, Acknowledgement.FALSE, "FFAA327B", "1000", DeleteFlag.FALSE, 43.21, -111.22, 10011.0, 1.0, 2.0, 3.0, 200.0, 275.0, 10.0, 20.0, 30.0,
@@ -142,7 +141,7 @@ class CONTACTTest {
 	Assertions.assertArrayEquals("sfapmf---------".toCharArray(), contact2.getSIDC());
 	Assertions.assertEquals("221333201", contact2.getMMSI());
 	Assertions.assertEquals("FA550C", contact2.getICAO());
-	Assertions.assertArrayEquals(this.imageData, contact2.getImageData());
+	Assertions.assertArrayEquals(this.imageData, contact2.getMultimediaData());
 	Assertions.assertEquals("This is a test track", contact2.getComment());
 
     }
@@ -182,7 +181,7 @@ class CONTACTTest {
 	Assertions.assertArrayEquals("SFAPMF---------".toCharArray(), contact.getSIDC());
 	Assertions.assertEquals("221333201", contact.getMMSI());
 	Assertions.assertEquals("FA550C", contact.getICAO());
-	Assertions.assertArrayEquals(this.imageData, contact.getImageData());
+	Assertions.assertArrayEquals(this.imageData, contact.getMultimediaData());
 	Assertions.assertEquals("TestTrack", contact.getComment());
 
 	message = "CONTACT;5E;661D4410;66A3;R;;;100;FALSE;53.32;8.11;0;;;;120;275;;;;;;;FGS Bayern;AR;SFSPFCLFF------;;;;VXNlIENIMjI=";
@@ -218,7 +217,7 @@ class CONTACTTest {
 	Assertions.assertArrayEquals("SFSPFCLFF------".toCharArray(), contact.getSIDC());
 	Assertions.assertNull(contact.getMMSI());
 	Assertions.assertNull(contact.getICAO());
-	Assertions.assertNull(contact.getImageData());
+	Assertions.assertNull(contact.getMultimediaData());
 	Assertions.assertEquals("Use CH22", contact.getComment());
 
 	message = "CONTACT;5F;661D5420;83C5;U;;;101;FALSE;36.32;12.11;2000;;;;44;;;;;;;;Unknown;O;;221333201;;;UG9zcyBOZXRoZXJsYW5kcw==";
@@ -253,7 +252,7 @@ class CONTACTTest {
 	Assertions.assertNull(contact.getSIDC());
 	Assertions.assertEquals("221333201", contact.getMMSI());
 	Assertions.assertNull(contact.getICAO());
-	Assertions.assertNull(contact.getImageData());
+	Assertions.assertNull(contact.getMultimediaData());
 	Assertions.assertEquals("Poss Netherlands", contact.getComment());
 
 	message = "CONTACT;60;54742310;4371;S;TRUE;;102;TRUE;53.32;8.11";
@@ -287,7 +286,7 @@ class CONTACTTest {
 	Assertions.assertNull(contact.getSIDC());
 	Assertions.assertNull(contact.getMMSI());
 	Assertions.assertNull(contact.getICAO());
-	Assertions.assertNull(contact.getImageData());
+	Assertions.assertNull(contact.getMultimediaData());
 	Assertions.assertNull(contact.getComment());
 
     }
@@ -332,7 +331,7 @@ class CONTACTTest {
 	Assertions.assertEquals("FA550C", contact.getICAO());
 	Assertions.assertEquals(
 		"iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAC4jAAAuIwF4pT92AAABcElEQVRYw+1WsYrCUBCcyLUiNinEL1AUxNpKgoLYiqWg+AvmE/wAS0sLsbERC4UgFikEowhqqY0WQRQEsUr2ii0OTzkuuUvCHVkI+3b3EYaZHXgCERE8jAA8Dh+AD+APA+h0AEEAtlsPAJgm0O3yeTb7GQVkJ3Y7IoBIlokkicgwyG7YY0DTAFEE8nlgPAb2e5cl6PeBWg2Ix7mez12U4Hhk+gcDrksl/kzTJQmWS86JBOdiEej1gMPBJQmGQ0CSgGiU62TyEZijEpxOTH+7/dG73YiCQaJ63ZYE1gAoCgNYLB77ssx9XbcM4M0SXYrCOZV6PV+tgGzW0i+Fb7+IrlcgFAIqFaBQeJ5Vq0CjATSbDu2AqjLNo9HzzDCIMhmeXy4O2XA65RyLvfBSACiX+bxeO2DD+x1otYBcDohEXt9JpzlPJg5IoGnP9vsc5zPfEUW25q9KoKpfbz8AhMO8iLoObDYOuMB/kvkAfAD/FcA7SSgc2Vo2QpYAAAAASUVORK5CYII=",
-		org.bouncycastle.util.encoders.Base64.toBase64String(contact.getImageData()));
+		org.bouncycastle.util.encoders.Base64.toBase64String(contact.getMultimediaData()));
 	Assertions.assertEquals("This is a test track", contact.getComment());
     }
 }

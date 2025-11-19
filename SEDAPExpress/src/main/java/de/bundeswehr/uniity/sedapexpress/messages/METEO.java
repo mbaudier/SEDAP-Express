@@ -52,6 +52,8 @@ public class METEO extends SEDAPExpressMessage {
     private Double cloudHeight;
     private Double cloudCover;
 
+    private String reference;
+
     public Double getSpeedThroughWater() {
 	return this.speedThroughWater;
     }
@@ -164,6 +166,14 @@ public class METEO extends SEDAPExpressMessage {
 	this.cloudCover = cloudCover;
     }
 
+    public String getReference() {
+	return this.reference;
+    }
+
+    public void setReference(String reference) {
+	this.reference = reference;
+    }
+
     /**
      * Instantiate a new default METEO message
      */
@@ -185,6 +195,7 @@ public class METEO extends SEDAPExpressMessage {
 	this.visibility = null;
 	this.cloudHeight = null;
 	this.cloudCover = null;
+	this.reference = null;
     }
 
     /**
@@ -210,9 +221,10 @@ public class METEO extends SEDAPExpressMessage {
      * @param visibility
      * @param cloudHeight
      * @param cloudCover
+     * @param reference
      */
     public METEO(Byte number, Long time, String sender, Classification classification, Acknowledgement acknowledgement, String mac, Double speedThroughWater, Double waterSpeed, Double waterDirection, Double waterTemperature,
-	    Double waterDepth, Double airTemperature, Double dewPoint, Double humidityRel, Double pressure, Double windSpeed, Double windDirection, Double visibility, Double cloudHeight, Double cloudCover) {
+	    Double waterDepth, Double airTemperature, Double dewPoint, Double humidityRel, Double pressure, Double windSpeed, Double windDirection, Double visibility, Double cloudHeight, Double cloudCover, String reference) {
 
 	super(number, time, sender, classification, acknowledgement, mac);
 
@@ -230,6 +242,7 @@ public class METEO extends SEDAPExpressMessage {
 	this.visibility = visibility;
 	this.cloudHeight = cloudHeight;
 	this.cloudCover = cloudCover;
+	this.reference = reference;
     }
 
     /**
@@ -414,6 +427,18 @@ public class METEO extends SEDAPExpressMessage {
 		SEDAPExpressMessage.logger.logp(Level.SEVERE, "METEO", "METEO(Iterator<String> message)", "Optional field \"cloudCover\" contains invalid value!", value);
 	    }
 	}
+
+	// Reference
+	if (message.hasNext()) {
+	    value = message.next();
+	    if (value.isBlank()) {
+		SEDAPExpressMessage.logger.logp(Level.INFO, "METEO", "METEO(Iterator<String> message)", "Optional field \"reference\" is empty!");
+	    } else {
+		this.reference = value;
+	    }
+	} else
+	    SEDAPExpressMessage.logger.logp(Level.INFO, "METEO", "METEO(Iterator<String> message)", "Optional field \"reference\" is empty!");
+
     }
 
     @Override
@@ -424,9 +449,14 @@ public class METEO extends SEDAPExpressMessage {
 	    return false;
 	} else {
 	    return super.equals(obj) && (this.speedThroughWater == ((METEO) obj).speedThroughWater) && (this.waterSpeed == ((METEO) obj).waterSpeed) && (this.waterDirection == ((METEO) obj).waterDirection)
+
 		    && (this.waterTemperature == ((METEO) obj).waterTemperature) && (this.waterDepth == ((METEO) obj).waterDepth) && (this.airTemperature == ((METEO) obj).airTemperature) && (this.dewPoint == ((METEO) obj).dewPoint)
+
 		    && (this.humidityRel == ((METEO) obj).humidityRel) && (this.pressure == ((METEO) obj).pressure) && (this.windSpeed == ((METEO) obj).windSpeed) && (this.windDirection == ((METEO) obj).windDirection)
-		    && (this.visibility == ((METEO) obj).visibility) && (this.cloudHeight == ((METEO) obj).cloudHeight) && (this.cloudCover == ((METEO) obj).cloudCover);
+
+		    && (this.visibility == ((METEO) obj).visibility) && (this.cloudHeight == ((METEO) obj).cloudHeight) && (this.cloudCover == ((METEO) obj).cloudCover)
+
+		    && (((this.reference == null) && (((METEO) obj).reference == null)) || ((this.reference != null) && this.reference.equals(((METEO) obj).reference)));
 	}
     }
 
@@ -453,7 +483,9 @@ public class METEO extends SEDAPExpressMessage {
 		.append(";")
 
 		.append(this.visibility != null ? SEDAPExpressMessage.numberFormatter.format(this.visibility) : "").append(";").append(this.cloudHeight != null ? SEDAPExpressMessage.numberFormatter.format(this.cloudHeight) : "").append(";")
-		.append(this.cloudCover != null ? SEDAPExpressMessage.numberFormatter.format(this.cloudCover) : "").toString());
+		.append(this.cloudCover != null ? SEDAPExpressMessage.numberFormatter.format(this.cloudCover) : "")
+		
+		.append((this.reference != null) ? ";" + this.reference : "").toString());
     }
 
 }
