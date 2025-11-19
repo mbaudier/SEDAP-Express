@@ -119,7 +119,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 	assert this.speedTextField != null : "fx:id=\"speedTextField\" was not injected: check your FXML file 'OWNUNITPanel.fxml'.";
 
 	this.sidcDimComboBox.setItems(FXCollections.observableList(MessagePanelController.DimensionsList));
-	this.sidcDimComboBox.getSelectionModel().selectedIndexProperty().addListener((observable, o, n) -> {
+	this.sidcDimComboBox.getSelectionModel().selectedIndexProperty().addListener((_, _, n) -> {
 	    switch ((int) n) {
 	    case 0 -> this.sidcComboBox.setItems(null);
 	    case 1 -> this.sidcComboBox.setItems(FXCollections.observableList(SIDCCodes.spaceCodesList));
@@ -159,7 +159,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 
 	// Latitude
 	this.latitudeTextField.setTextFormatter(MessagePanelController.createLatitudeFormatter());
-	this.latitudeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.latitudeTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("-")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -173,7 +173,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 		}
 	    }
 	});
-	this.latitudeTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.latitudeTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.latitudeLabel.setVisible(!validateAndFormatLatField(this.latitudeTextField));
 	    }
@@ -181,7 +181,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 
 	// Longitude
 	this.longitudeTextField.setTextFormatter(MessagePanelController.createLongitudeFormatter());
-	this.longitudeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.longitudeTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("-")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -196,7 +196,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.longitudeTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.longitudeTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.longitudeLabel.setVisible(!validateAndFormatLongField(this.longitudeTextField));
 	    }
@@ -222,7 +222,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 
 	// Kurs
 	this.courseTextField.setTextFormatter(MessagePanelController.createBearingFormatter());
-	this.courseTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.courseTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -237,7 +237,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.courseTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.courseTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.courseLabel.setVisible(!validateAndFormatCourseField(this.courseTextField));
 	    }
@@ -245,7 +245,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 
 	// Heading
 	this.headingTextField.setTextFormatter(MessagePanelController.createBearingFormatter());
-	this.headingTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.headingTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -260,7 +260,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.headingTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.headingTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.headingLabel.setVisible(!validateAndFormatCourseField(this.headingTextField));
 	    }
@@ -268,7 +268,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 
 	// Roll
 	this.rollTextField.setTextFormatter(MessagePanelController.createBearingFormatter());
-	this.rollTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.rollTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -282,7 +282,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 		}
 	    }
 	});
-	this.rollTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.rollTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.rollLabel.setVisible(!validateAndFormatCourseField(this.rollTextField));
 	    }
@@ -290,7 +290,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 
 	// Pitch
 	this.pitchTextField.setTextFormatter(MessagePanelController.createBearingFormatter());
-	this.pitchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.pitchTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -304,13 +304,13 @@ public class OWNUNITPanelController extends MessagePanelController {
 		}
 	    }
 	});
-	this.pitchTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.pitchTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.pitchLabel.setVisible(!validateAndFormatCourseField(this.pitchTextField));
 	    }
 	});
 
-	this.sidcDimComboBox.valueProperty().addListener((observable, oldvalue, newValue) -> {
+	this.sidcDimComboBox.valueProperty().addListener((_, _, newValue) -> {
 	    if (newValue != null) {
 		setSIDC();
 	    } else {
@@ -318,7 +318,7 @@ public class OWNUNITPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.sidcComboBox.valueProperty().addListener((observable, oldvalue, newValue) -> {
+	this.sidcComboBox.valueProperty().addListener((_, _, newValue) -> {
 	    if (newValue != null) {
 		setSIDC();
 	    } else {

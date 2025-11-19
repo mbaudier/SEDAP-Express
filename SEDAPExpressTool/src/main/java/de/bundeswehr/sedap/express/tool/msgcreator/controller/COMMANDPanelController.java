@@ -159,7 +159,7 @@ public class COMMANDPanelController extends MessagePanelController {
 	this.cmdFlagComboBox.getSelectionModel().select(1);
 	this.cmdFlagLabel.setVisible(false);
 
-	this.recipientTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.recipientTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.equals("")) {
 		this.recipientLabel.setVisible(false);
 	    } else {
@@ -168,7 +168,7 @@ public class COMMANDPanelController extends MessagePanelController {
 	});
 
 	this.cmdIDTextField.setTextFormatter(MessagePanelController.createHexFormatter());
-	this.cmdIDTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.cmdIDTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.isEmpty()) {
 		try {
 		    this.commandID = Short.parseShort(newValue, 16);

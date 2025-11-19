@@ -205,8 +205,6 @@ public class CONTACTPanelController extends MessagePanelController {
 
 	if (selectedFile != null) {
 	    try {
-		// String fileContent = Files.readString(Path.of(selectedFile.getPath()))[4];
-		// fileContent = Files.readString(Path.of(selectedFile.getPath()), StandardCharsets.ISO_8859_1);
 		this.imageData = Files.readAllBytes(Path.of(selectedFile.getPath()));
 	    } catch (Exception e) {
 		System.out.println("Fehler beim Lesen der Datei: " + e.getMessage());
@@ -215,19 +213,7 @@ public class CONTACTPanelController extends MessagePanelController {
 	    System.out.println("Keine Datei ausgewählt.");
 	}
 
-	if (selectedFile != null) {
-	    try {
-		Path filePath = selectedFile.toPath();
-		String fileContent = new String(Files.readString(filePath));
-		System.out.println("File content stored in string.");
-	    } catch (Exception ex) {
-		System.out.println("Error reading file: " + ex.getMessage());
-	    }
-	}
-
     }
-
-    private String fileContent;
 
     @FXML
     void initialize() {
@@ -288,7 +274,7 @@ public class CONTACTPanelController extends MessagePanelController {
 	this.deleteFlagComboBox.setTooltip(tooltipDeleteFlag);
 
 	// Contact ID
-	this.contactIdTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.contactIdTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.equals("")) {
 		this.contactIdLabel.setVisible(false);
 	    } else {
@@ -302,7 +288,7 @@ public class CONTACTPanelController extends MessagePanelController {
 
 	// Latitude
 	this.latitudeTextField.setTextFormatter(MessagePanelController.createLatitudeFormatter());
-	this.latitudeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.latitudeTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("-")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -316,7 +302,7 @@ public class CONTACTPanelController extends MessagePanelController {
 		}
 	    }
 	});
-	this.latitudeTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.latitudeTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.latitudeLabel.setVisible(!validateAndFormatLatField(this.latitudeTextField));
 	    }
@@ -324,7 +310,7 @@ public class CONTACTPanelController extends MessagePanelController {
 
 	// Longitude
 	this.longitudeTextField.setTextFormatter(MessagePanelController.createLongitudeFormatter());
-	this.longitudeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.longitudeTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("-")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -340,7 +326,7 @@ public class CONTACTPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.longitudeTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.longitudeTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.longitudeLabel.setVisible(!validateAndFormatLongField(this.longitudeTextField));
 	    }
@@ -402,7 +388,7 @@ public class CONTACTPanelController extends MessagePanelController {
 
 	// Kurs
 	this.courseTextField.setTextFormatter(MessagePanelController.createBearingFormatter());
-	this.courseTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.courseTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -417,7 +403,7 @@ public class CONTACTPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.courseTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.courseTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.courseLabel.setVisible(!validateAndFormatCourseField(this.courseTextField));
 	    }
@@ -426,7 +412,7 @@ public class CONTACTPanelController extends MessagePanelController {
 
 	// Heading
 	this.headingTextField.setTextFormatter(MessagePanelController.createBearingFormatter());
-	this.headingTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.headingTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -447,7 +433,7 @@ public class CONTACTPanelController extends MessagePanelController {
 
 	// Roll
 	this.rollTextField.setTextFormatter(MessagePanelController.createBearingFormatter());
-	this.rollTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.rollTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -468,7 +454,7 @@ public class CONTACTPanelController extends MessagePanelController {
 
 	// Pitch
 	this.pitchTextField.setTextFormatter(MessagePanelController.createBearingFormatter());
-	this.pitchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.pitchTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -504,7 +490,7 @@ public class CONTACTPanelController extends MessagePanelController {
 
 	this.sourceMenueButton.getItems().addAll(items);
 
-	this.sourceMenueButton.showingProperty().addListener((observable, oldValue, newValue) -> {
+	this.sourceMenueButton.showingProperty().addListener((_, _, newValue) -> {
 	    StringBuilder label = new StringBuilder();
 	    this.source = "";
 	    if (!newValue) {
@@ -555,7 +541,7 @@ public class CONTACTPanelController extends MessagePanelController {
 	this.sidcIDComboBox.setItems(FXCollections.observableList(MessagePanelController.identitiesList));
 	this.sidcIDComboBox.getSelectionModel().select(0);
 	this.sidcDimComboBox.setItems(FXCollections.observableList(MessagePanelController.DimensionsList));
-	this.sidcDimComboBox.getSelectionModel().selectedIndexProperty().addListener((observable, o, n) -> {
+	this.sidcDimComboBox.getSelectionModel().selectedIndexProperty().addListener((_, _, n) -> {
 	    switch ((int) n) {
 	    case 0 -> this.sidcComboBox.setItems(null);
 	    case 1 -> this.sidcComboBox.setItems(FXCollections.observableList(SIDCCodes.spaceCodesList));
@@ -570,7 +556,7 @@ public class CONTACTPanelController extends MessagePanelController {
 	this.sidcDimComboBox.getSelectionModel().select(2);
 	this.sidcComboBox.getSelectionModel().select(5);
 	setSIDC();
-	this.sidcIDComboBox.valueProperty().addListener((observable, oldvalue, newValue) -> {
+	this.sidcIDComboBox.valueProperty().addListener((_, _, newValue) -> {
 	    if (newValue != null) {
 		setSIDC();
 	    } else {
@@ -578,7 +564,7 @@ public class CONTACTPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.sidcDimComboBox.valueProperty().addListener((observable, oldvalue, newValue) -> {
+	this.sidcDimComboBox.valueProperty().addListener((_, _, newValue) -> {
 	    if (newValue != null) {
 		setSIDC();
 	    } else {
@@ -586,7 +572,7 @@ public class CONTACTPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.sidcComboBox.valueProperty().addListener((observable, oldvalue, newValue) -> {
+	this.sidcComboBox.valueProperty().addListener((_, _, newValue) -> {
 	    if (newValue != null) {
 		setSIDC();
 	    } else {

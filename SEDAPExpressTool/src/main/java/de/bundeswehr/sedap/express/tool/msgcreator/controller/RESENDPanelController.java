@@ -74,7 +74,7 @@ public class RESENDPanelController extends MessagePanelController {
 		+ "representation of an 8-bit \r\n"
 		+ "00 - FF");
 
-	this.contactIdTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.contactIdTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.equals("")) {
 		this.contactIdLabel.setVisible(false);
 	    } else {
@@ -88,7 +88,7 @@ public class RESENDPanelController extends MessagePanelController {
 	this.nameComboBox.getSelectionModel().select(1);
 	this.nameComboBox.setTooltip(tooltipName);
 
-	this.numberTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.numberTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.equals("")) {
 		if (!newValue.equals(newValue.toUpperCase())) {
 		    this.numberTextField.setText(newValue.toUpperCase());

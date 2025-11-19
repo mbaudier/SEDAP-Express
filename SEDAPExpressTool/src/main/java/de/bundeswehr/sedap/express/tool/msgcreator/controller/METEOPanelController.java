@@ -167,7 +167,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.speedThroughWaterTextfield.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.speedThroughWaterTextfield.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.speedThroughWaterTextfield.getText();
 		if (text.isEmpty()) {
@@ -197,7 +197,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.waterSpeedTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.waterSpeedTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.waterSpeedTextField.getText();
 		if (text.isEmpty()) {
@@ -227,7 +227,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.waterDirectionTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.waterDirectionTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.waterDirectionTextField.getText();
 		if (text.isEmpty()) {
@@ -257,7 +257,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.waterTemperatureTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.waterTemperatureTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.waterTemperatureTextField.getText();
 		if (text.isEmpty()) {
@@ -287,7 +287,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.waterDepthTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.waterDepthTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.waterDepthTextField.getText();
 		if (text.isEmpty()) {
@@ -317,7 +317,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.airTemperatureTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.airTemperatureTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.airTemperatureTextField.getText();
 		if (text.isEmpty()) {
@@ -347,7 +347,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.dewPointTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.dewPointTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.dewPointTextField.getText();
 		if (text.isEmpty()) {
@@ -377,7 +377,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.humidityRelTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.humidityRelTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.humidityRelTextField.getText();
 		if (text.isEmpty()) {
@@ -407,7 +407,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.pressureTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.pressureTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.pressureTextField.getText();
 		if (text.isEmpty()) {
@@ -437,7 +437,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.windSpeedTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.windSpeedTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.windSpeedTextField.getText();
 		if (text.isEmpty()) {
@@ -467,7 +467,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.windDirectionTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.windDirectionTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.windDirectionTextField.getText();
 		if (text.isEmpty()) {
@@ -497,7 +497,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.visibilityTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.visibilityTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.visibilityTextField.getText();
 		if (text.isEmpty()) {
@@ -527,7 +527,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.cloudHeightTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.cloudHeightTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.cloudHeightTextField.getText();
 		if (text.isEmpty()) {
@@ -557,7 +557,7 @@ public class METEOPanelController extends MessagePanelController {
 	    }
 	    return null;
 	}));
-	this.cloudCoverTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.cloudCoverTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) { // Wenn der Fokus verloren geht
 		String text = this.cloudCoverTextField.getText();
 		if (text.isEmpty()) {
@@ -584,12 +584,15 @@ public class METEOPanelController extends MessagePanelController {
     Double speedThroughWater, waterSpeed, waterDirection, waterTemperature, waterDepth, airTemperature, dewPoint, humidityRel,
 	    pressure, windSpeed, windDirection, visibility, cloudHeight, cloudCover;
 
+    String reference;
+
     @Override
     public METEO createMessage(Byte number, Long time, String sender,
 	    Classification classification, Acknowledgement acknowledgement, String mac) {
 
 	METEO meteo = new METEO(number, time, sender,
 		classification, acknowledgement, mac,
+
 		this.speedThroughWater,
 		this.waterSpeed,
 		this.waterDirection,
@@ -603,7 +606,9 @@ public class METEOPanelController extends MessagePanelController {
 		this.windDirection,
 		this.visibility,
 		this.cloudHeight,
-		this.cloudCover);
+		this.cloudCover,
+
+		this.reference);
 
 	return meteo;
     }

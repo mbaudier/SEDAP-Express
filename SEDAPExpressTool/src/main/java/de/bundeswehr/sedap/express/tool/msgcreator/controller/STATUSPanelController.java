@@ -210,20 +210,20 @@ public class STATUSPanelController extends MessagePanelController {
 	this.opsStateComboBox.getSelectionModel().select(0);
 
 	// AmmunitionLevelTextField
-	this.ammunitionLevelTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.ammunitionLevelTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		getAmmunitionLevel(this.ammunitionLevelTextField.getText());
 	    }
 	});
 
 	// FuelLevelTextField
-	this.fuelLevelTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.fuelLevelTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		getFuelLevel(this.fuelLevelTextField.getText());
 	    }
 	});
 	// BatterieLevelTextField
-	this.batterieLevelTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.batterieLevelTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		getBatterieLevel(this.batterieLevelTextField.getText());
 	    }
@@ -231,7 +231,7 @@ public class STATUSPanelController extends MessagePanelController {
 
 	// CmdID
 	this.cmdIdTextField.setTextFormatter(MessagePanelController.createHexFormatter());
-	this.cmdIdTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.cmdIdTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.isEmpty()) {
 		try {
 		    this.commandID = Integer.parseInt(newValue, 16);
@@ -274,7 +274,7 @@ public class STATUSPanelController extends MessagePanelController {
 	this.cmdStateComboBox.getSelectionModel().select(0);
 
 	// IP/Host
-	this.ipHostTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.ipHostTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.isEmpty()) {
 		this.hostname = this.ipHostTextField.getText();
 	    } else {
@@ -283,7 +283,7 @@ public class STATUSPanelController extends MessagePanelController {
 	});
 
 	// Media
-	this.mediaTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.mediaTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.isEmpty()) {
 		getMedia(this.mediaTextField.getText());
 	    } else {
@@ -292,7 +292,7 @@ public class STATUSPanelController extends MessagePanelController {
 	});
 
 	// Text
-	this.textTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.textTextArea.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.isEmpty()) {
 		this.freeText = this.textTextArea.getText();
 	    } else {

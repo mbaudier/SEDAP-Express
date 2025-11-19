@@ -40,7 +40,7 @@ public abstract class SEDAPExpressValidator {
 
     private void setupValidator() {
 
-	this.textfield.textProperty().addListener((observable, oldValuse, newValue) -> {
+	this.textfield.textProperty().addListener((_, _, newValue) -> {
 	    if (isValid(newValue)) {
 		this.textfield.setStyle("-fx-border-color: green;");
 	    } else {

@@ -243,19 +243,19 @@ public class SEDAPExpressTool extends Application implements SEDAPExpressSubscri
 	assert this.udpPortTextField != null : "fx:id=\"udpPortTextField\" was not injected: check your FXML file 'SEDAPExpressTool.fxml'.";
 
 	// TiledPanes
-	this.tcpClientPane.expandedProperty().addListener((s, o, n) -> {
+	this.tcpClientPane.expandedProperty().addListener((_, _, n) -> {
 	    if (n) {
 		this.tcpPane.setExpanded(false);
 		this.udpPane.setExpanded(false);
 	    }
 	});
-	this.tcpPane.expandedProperty().addListener((s, o, n) -> {
+	this.tcpPane.expandedProperty().addListener((_, _, n) -> {
 	    if (n) {
 		this.tcpClientPane.setExpanded(false);
 		this.udpPane.setExpanded(false);
 	    }
 	});
-	this.udpPane.expandedProperty().addListener((s, o, n) -> {
+	this.udpPane.expandedProperty().addListener((_, _, n) -> {
 	    if (n) {
 		this.tcpClientPane.setExpanded(false);
 		this.tcpPane.setExpanded(false);
@@ -521,10 +521,10 @@ public class SEDAPExpressTool extends Application implements SEDAPExpressSubscri
     @Override
     public void processSEDAPExpressMessage(SEDAPExpressMessage message) {
 
-	if (message instanceof ACKNOWLEDGE acknowledge) {
+	if (message instanceof ACKNOWLEDGE _) {
 	}
 
-	else if (message instanceof COMMAND command) {
+	else if (message instanceof COMMAND _) {
 	}
 
 	else if (message instanceof CONTACT contact) {
@@ -648,18 +648,18 @@ public class SEDAPExpressTool extends Application implements SEDAPExpressSubscri
 
 	}
 
-	else if (message instanceof EMISSION emission) {
-	} else if (message instanceof GENERIC generic) {
-	} else if (message instanceof GRAPHIC graphic) {
-	} else if (message instanceof HEARTBEAT heartbeat) {
-	} else if (message instanceof KEYEXCHANGE keyexchange) {
-	} else if (message instanceof METEO meteo) {
-	} else if (message instanceof OWNUNIT ownunit) {
-	} else if (message instanceof RESEND resend) {
-	} else if (message instanceof STATUS status) {
-	} else if (message instanceof TEXT text) {
+	else if (message instanceof EMISSION _) {
+	} else if (message instanceof GENERIC _) {
+	} else if (message instanceof GRAPHIC _) {
+	} else if (message instanceof HEARTBEAT _) {
+	} else if (message instanceof KEYEXCHANGE _) {
+	} else if (message instanceof METEO _) {
+	} else if (message instanceof OWNUNIT _) {
+	} else if (message instanceof RESEND _) {
+	} else if (message instanceof STATUS _) {
+	} else if (message instanceof TEXT _) {
 
-	} else if (message instanceof TIMESYNC timesync) {
+	} else if (message instanceof TIMESYNC _) {
 	    // Ignore, is already done by SEDAPExpressCommunicator.TimeSyncRunable
 	} else
 	    throw new IllegalArgumentException("Unexpected value: " + message.getMessageType());
@@ -680,7 +680,7 @@ public class SEDAPExpressTool extends Application implements SEDAPExpressSubscri
 	    primaryStage.show();
 
 	    // If you close the application close all connections gracefully
-	    primaryStage.setOnCloseRequest(event -> {
+	    primaryStage.setOnCloseRequest(_ -> {
 		if (SEDAPExpressTool.this.communicator != null) {
 		    SEDAPExpressTool.this.communicator.stopCommunicator();
 		}

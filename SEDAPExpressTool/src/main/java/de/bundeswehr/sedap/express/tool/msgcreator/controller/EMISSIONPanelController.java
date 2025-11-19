@@ -210,7 +210,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 
 	// EmissionID
 	this.emissionIdTextField.setTooltip(tooltipEmissionID);
-	this.emissionIdTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.emissionIdTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.equals("")) {
 		this.contactIdLabel.setVisible(false);
 	    } else {
@@ -232,7 +232,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 
 	// Sensor Latitude
 	this.latitudeTextField.setTextFormatter(MessagePanelController.createLatitudeFormatter());
-	this.latitudeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.latitudeTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("-")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -246,7 +246,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 		}
 	    }
 	});
-	this.latitudeTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.latitudeTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.latitudeLabel.setVisible(!validateAndFormatLatField(this.latitudeTextField));
 	    }
@@ -254,7 +254,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 
 	// Sensor Longitude
 	this.longitudeTextField.setTextFormatter(MessagePanelController.createLongitudeFormatter());
-	this.longitudeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.longitudeTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("-")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -269,7 +269,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.longitudeTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.longitudeTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.longitudeLabel.setVisible(!validateAndFormatLongField(this.longitudeTextField));
 	    }
@@ -287,7 +287,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 
 	// Emitter Latitude
 	this.emitterLatTextField.setTextFormatter(MessagePanelController.createLatitudeFormatter());
-	this.emitterLatTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.emitterLatTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("-")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -302,7 +302,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.emitterLatTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.emitterLatTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		validateAndFormatLatField(this.emitterLatTextField);
 	    }
@@ -312,7 +312,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 
 	// Emitter Longitude
 	this.emitterLongTextField.setTextFormatter(MessagePanelController.createLongitudeFormatter());
-	this.emitterLongTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.emitterLongTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("-")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -327,7 +327,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.emitterLongTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.emitterLongTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		validateAndFormatLongField(this.emitterLongTextField);
 	    }
@@ -347,7 +347,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 
 	// Bearing
 	this.bearingTextField.setTextFormatter(MessagePanelController.createBearingFormatter());
-	this.bearingTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.bearingTextField.textProperty().addListener((_, oldValue, newValue) -> {
 	    if (!newValue.isEmpty() && !newValue.equals("")) {
 		try {
 		    double value = Double.parseDouble(newValue);
@@ -362,7 +362,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.bearingTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.bearingTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		this.bearingLabel.setVisible(!validateAndFormatCourseField(this.bearingTextField));
 	    }
@@ -378,7 +378,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 	}));
 	this.frequenciesLabel.setVisible(false);
 
-	this.frequenciesTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+	this.frequenciesTextField.focusedProperty().addListener((_, _, newValue) -> {
 	    if (!newValue) {
 		frequenciesInput(this.frequenciesTextField.getText());
 	    }
@@ -424,7 +424,7 @@ public class EMISSIONPanelController extends MessagePanelController {
 	this.sidcIDComboBox.setItems(FXCollections.observableList(MessagePanelController.identitiesList));
 	this.sidcIDComboBox.getSelectionModel().select(0);
 	this.sidcDimComboBox.setItems(FXCollections.observableList(MessagePanelController.DimensionsList));
-	this.sidcDimComboBox.getSelectionModel().selectedIndexProperty().addListener((observable, o, n) -> {
+	this.sidcDimComboBox.getSelectionModel().selectedIndexProperty().addListener((_, _, n) -> {
 	    switch ((int) n) {
 	    case 0 -> this.sidcComboBox.setItems(null);
 	    case 1 -> this.sidcComboBox.setItems(FXCollections.observableList(SIDCCodes.spaceCodesList));

@@ -638,7 +638,7 @@ public class MessageTool extends Application {
 	this.acknowledgmentComboBox.setTooltip(tooltipAcknowledgement);
 	this.macTextField.setTooltip(tooltipMac);
 
-	this.numberTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.numberTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.equals("")) {
 		if (!newValue.equals(newValue.toUpperCase())) {
 		    this.numberTextField.setText(newValue.toUpperCase());
@@ -657,7 +657,7 @@ public class MessageTool extends Application {
 	this.senderLabel.setVisible(false);
 	this.macLabel.setVisible(false);
 
-	this.outputLogTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.outputLogTextArea.textProperty().addListener((_, oldValue, newValue) -> {
 
 	    if (!newValue.equals(oldValue) && !this.autoscrollOutput) {
 		this.scrollPositionOutput = this.outputLogTextArea.getCaretPosition();
@@ -667,7 +667,7 @@ public class MessageTool extends Application {
 	    }
 	});
 
-	this.inputLogTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.inputLogTextArea.textProperty().addListener((_, oldValue, newValue) -> {
 
 	    if (!newValue.equals(oldValue) && !this.autoscrollOutput) {
 		this.scrollPositionInput = this.inputLogTextArea.getCaretPosition();
@@ -677,7 +677,7 @@ public class MessageTool extends Application {
 	    }
 	});
 
-	this.datePicker.valueProperty().addListener((obs, oldValue, newValue) -> {
+	this.datePicker.valueProperty().addListener((_, _, newValue) -> {
 	    if (newValue == null) {
 
 	    } else {
@@ -686,7 +686,7 @@ public class MessageTool extends Application {
 	    generateTime();
 	});
 
-	this.hourSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+	this.hourSpinner.valueProperty().addListener((_, oldValue, newValue) -> {
 	    if (newValue == null) {
 		this.hourSpinner.getValueFactory().setValue(oldValue);
 	    } else if (newValue < 0) {
@@ -698,7 +698,7 @@ public class MessageTool extends Application {
 	    generateTime();
 	});
 
-	this.minuteSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+	this.minuteSpinner.valueProperty().addListener((_, oldValue, newValue) -> {
 	    if (newValue == null) {
 		this.minuteSpinner.getValueFactory().setValue(oldValue);
 	    } else if (newValue < 0) {
@@ -710,7 +710,7 @@ public class MessageTool extends Application {
 	    generateTime();
 	});
 
-	this.secondSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+	this.secondSpinner.valueProperty().addListener((_, oldValue, newValue) -> {
 	    if (newValue == null) {
 		this.secondSpinner.getValueFactory().setValue(oldValue);
 	    } else if (newValue < 0) {
@@ -722,7 +722,7 @@ public class MessageTool extends Application {
 	    generateTime();
 	});
 
-	this.autoTimeCheckBox.setOnAction(event -> {
+	this.autoTimeCheckBox.setOnAction(_ -> {
 	    if (this.autoTimeCheckBox.isSelected()) {
 		this.timeLabel.setVisible(false);
 	    } else {

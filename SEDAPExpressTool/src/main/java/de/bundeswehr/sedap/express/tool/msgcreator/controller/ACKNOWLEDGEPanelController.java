@@ -84,7 +84,7 @@ public class ACKNOWLEDGEPanelController extends MessagePanelController {
 		+ "representation of an 8-bit \r\n"
 		+ "00 - FF");
 
-	this.contactIdTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.contactIdTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.equals("")) {
 		this.contactIdLabel.setVisible(false);
 	    } else {
@@ -96,7 +96,7 @@ public class ACKNOWLEDGEPanelController extends MessagePanelController {
 	this.nameLabel.setVisible(false);
 	this.nameTextField.setTooltip(tooltipName);
 
-	this.numberTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+	this.numberTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.equals("")) {
 		if (!newValue.equals(newValue.toUpperCase())) {
 		    this.numberTextField.setText(newValue.toUpperCase());

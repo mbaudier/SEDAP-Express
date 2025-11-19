@@ -128,7 +128,7 @@ public class KEYEXCHANGEPanelController extends MessagePanelController {
 	    }
 	});
 
-	this.algorithmComboBox.getSelectionModel().selectedIndexProperty().addListener((s, o, newValue) -> {
+	this.algorithmComboBox.getSelectionModel().selectedIndexProperty().addListener((_, _, newValue) -> {
 	    switch (newValue.intValue()) {
 	    case 0:
 		this.phase = FXCollections.observableArrayList(0, 1, 3);
@@ -172,7 +172,7 @@ public class KEYEXCHANGEPanelController extends MessagePanelController {
 	this.keyLenghtComboBox.setItems(keyLength);
 	this.keyLenghtComboBox.getSelectionModel().select(0);
 	// Prime
-	this.primeTextField.textProperty().addListener((s, o, newValue) -> {
+	this.primeTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.isEmpty()) {
 		try {
 		    this.primeNumber = new BigInteger(newValue, 16);
@@ -185,7 +185,7 @@ public class KEYEXCHANGEPanelController extends MessagePanelController {
 	});
 	// Natural Number
 	// this.naturalNumberTextField.setTextFormatter(MessagePanelController.createHexFormatter());
-	this.naturalNumberTextField.textProperty().addListener((s, o, newValue) -> {
+	this.naturalNumberTextField.textProperty().addListener((_, _, newValue) -> {
 	    if (!newValue.isEmpty()) {
 		try {
 		    this.naturalNumber = new BigInteger(newValue, 16);
