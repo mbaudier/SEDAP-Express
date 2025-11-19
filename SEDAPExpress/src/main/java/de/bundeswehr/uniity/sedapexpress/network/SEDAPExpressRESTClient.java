@@ -105,6 +105,8 @@ public class SEDAPExpressRESTClient extends SEDAPExpressCommunicator implements 
 	    SEDAPExpressRESTClient.logger.logp(Level.SEVERE, "SEDAPExpressRESTClient", "run()", e.getLocalizedMessage());
 	    logInput("REST client for \"" + this.url + "\" could not be created!");
 
+		lastException =e;
+		
 	    return false;
 	}
 
@@ -190,7 +192,7 @@ public class SEDAPExpressRESTClient extends SEDAPExpressCommunicator implements 
 		this.lastException = e;
 
 		if (this.status) {
-		    SEDAPExpressTCPServer.logger.logp(Level.SEVERE, "SEDAPExpressRESTServer", "run()", "Could not connect to HTTP server... waiting 2 seconds for next try!", e.getLocalizedMessage());
+		    SEDAPExpressTCPServer.logger.logp(Level.SEVERE, "SEDAPExpressRESTClient", "run()", "Could not connect to HTTP server... waiting 2 seconds for next try!", e.getLocalizedMessage());
 		    logInput("Could not connect to HTTP server... waiting 2 seconds for next try!");
 		    logInput("Error message: " + e.getLocalizedMessage());
 		    try {
@@ -198,6 +200,7 @@ public class SEDAPExpressRESTClient extends SEDAPExpressCommunicator implements 
 		    } catch (InterruptedException ex) {
 		    }
 		}
+
 	    }
 
 	    try {
@@ -210,6 +213,15 @@ public class SEDAPExpressRESTClient extends SEDAPExpressCommunicator implements 
 
     @Override
     public boolean sendSEDAPExpressMessage(SEDAPExpressMessage message) throws IOException {
+	
+	if (!this.status) {
+
+	    SEDAPExpressRESTServer.logger.logp(Level.INFO, "SEDAPExpressRESTClient", "sendSEDAPExpressMessage()", "Could not send message, the HTTP client has been stopped!");
+	    logInput("Could not send message, the HTTP client has been stopped!");
+
+	    this.lastException = new IOException("Could not send message, the HTTP client has been stopped!");
+	    return false;
+	}
 
 	SEDAPExpressRESTClient.messageBuffer.add(message);
 
@@ -221,7 +233,7 @@ public class SEDAPExpressRESTClient extends SEDAPExpressCommunicator implements 
 
 	this.status = false;
 
-	SEDAPExpressRESTClient.logger.logp(Level.INFO, "SEDAPExpressRESTServer", "stopCommunicator()", "REST server stopped");
+	SEDAPExpressRESTClient.logger.logp(Level.INFO, "SEDAPExpressRESTClient", "stopCommunicator()", "REST server stopped");
 	logInput("REST server stopped");
     }
 

@@ -40,7 +40,6 @@ import javax.crypto.spec.DHParameterSpec;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import de.bundeswehr.uniity.sedapexpress.utils.DHUtils;
 import de.bundeswehr.uniity.sedapexpress.utils.EncryptionUtils.AESKeyLength;
 import de.bundeswehr.uniity.sedapexpress.utils.EncryptionUtils.DHKEMKeyLength;
 

@@ -34,7 +34,6 @@ import org.junit.jupiter.api.Test;
 import de.bundeswehr.uniity.sedapexpress.messages.SEDAPExpressMessage.Acknowledgement;
 import de.bundeswehr.uniity.sedapexpress.messages.SEDAPExpressMessage.Classification;
 import de.bundeswehr.uniity.sedapexpress.messages.SEDAPExpressMessage.DataEncoding;
-import de.bundeswehr.uniity.sedapexpress.messages.TEXT;
 import de.bundeswehr.uniity.sedapexpress.messages.TEXT.TextType;
 
 class TEXTTest {

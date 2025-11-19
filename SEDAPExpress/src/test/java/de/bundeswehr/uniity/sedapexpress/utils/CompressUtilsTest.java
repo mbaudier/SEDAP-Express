@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Test;
 
 import de.bundeswehr.uniity.sedapexpress.messages.SEDAPExpressMessage;
 import de.bundeswehr.uniity.sedapexpress.messages.TEXT;
-import de.bundeswehr.uniity.sedapexpress.utils.CompressUtils;
 
 public class CompressUtilsTest {
 

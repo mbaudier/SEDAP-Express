@@ -31,7 +31,6 @@ import java.util.Iterator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import de.bundeswehr.uniity.sedapexpress.messages.ACKNOWLEDGE;
 import de.bundeswehr.uniity.sedapexpress.messages.SEDAPExpressMessage.Acknowledgement;
 import de.bundeswehr.uniity.sedapexpress.messages.SEDAPExpressMessage.Classification;
 import de.bundeswehr.uniity.sedapexpress.messages.SEDAPExpressMessage.MessageType;
