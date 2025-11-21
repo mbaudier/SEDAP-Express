@@ -56,6 +56,7 @@ import de.bundeswehr.uniity.sedapexpress.messages.STATUS;
 import de.bundeswehr.uniity.sedapexpress.messages.TEXT;
 import de.bundeswehr.uniity.sedapexpress.messages.TIMESYNC;
 import de.bundeswehr.uniity.sedapexpress.network.SEDAPExpressCommunicator;
+import de.bundeswehr.uniity.sedapexpress.network.SEDAPExpressRESTServer;
 import de.bundeswehr.uniity.sedapexpress.network.SEDAPExpressTCPClient;
 import de.bundeswehr.uniity.sedapexpress.network.SEDAPExpressTCPServer;
 import de.bundeswehr.uniity.sedapexpress.network.SEDAPExpressUDPClient;
@@ -453,7 +454,8 @@ public class SECMockUpHMI extends Application implements SEDAPExpressSubscriber,
     @FXML
     void tcpConnect(ActionEvent event) {
 
-	this.communicator = new SEDAPExpressTCPServer(this.tcpInterfaceComboBox.getSelectionModel().getSelectedItem().getInetAddresses().nextElement().getHostAddress(), Integer.parseInt(this.tcpClientPortTextField.getText()));
+//	this.communicator = new SEDAPExpressTCPServer(this.tcpInterfaceComboBox.getSelectionModel().getSelectedItem().getInetAddresses().nextElement().getHostAddress(), Integer.parseInt(this.tcpClientPortTextField.getText()));
+	this.communicator = new SEDAPExpressRESTServer(Integer.parseInt(this.tcpClientPortTextField.getText()), 1000);
 	this.communicator.subscripeForInputLogging(this);
 	this.communicator.subscripeForOutputLogging(this);
 
@@ -566,12 +568,17 @@ public class SECMockUpHMI extends Application implements SEDAPExpressSubscriber,
 		}
 
 	    } else if (contact.getDeleteFlag() == DeleteFlag.FALSE) {
+		    Position pos;
+		    if (contact.getAltitude() != null)
+			pos = Position.fromDegrees(contact.getLatitude(), contact.getLongitude(), contact.getAltitude());
+		    else
+			pos = Position.fromDegrees(contact.getLatitude(), contact.getLongitude());
 
 		// Create new symbol with some default attributes
 		if (contact.getSIDC() != null)
-		    pp = new MilStd2525TacticalSymbol(String.valueOf(contact.getSIDC()), null);
+		    pp = new MilStd2525TacticalSymbol(String.valueOf(contact.getSIDC()), pos);
 		else
-		    pp = new MilStd2525TacticalSymbol(SECMockUpHMI.standardSIDC, Position.fromDegrees(0.0, 0.0, 0.0));
+		    pp = new MilStd2525TacticalSymbol(SECMockUpHMI.standardSIDC, pos);
 		pp.setAltitudeMode(WorldWind.ABSOLUTE);
 		pp.setShowLocation(false);
 		pp.setShowGraphicModifiers(true);
