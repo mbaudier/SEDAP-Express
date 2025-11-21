@@ -33,6 +33,7 @@ import java.net.NetworkInterface;
 import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -218,7 +219,7 @@ public class SEDAPExpressTool extends Application implements SEDAPExpressSubscri
     private SEDAPExpressCommunicator communicator;
 
     @FXML
-    void initialize() {
+    protected void initialize() {
 	assert this.authenticationCheckBox != null : "fx:id=\"authenticationCheckBox\" was not injected: check your FXML file 'SEDAPExpressTool.fxml'.";
 	assert this.encryptedCheckBox != null : "fx:id=\"encryptedCheckBox\" was not injected: check your FXML file 'SEDAPExpressTool.fxml'.";
 	assert this.inputLoggingArea != null : "fx:id=\"inputLoggingArea\" was not injected: check your FXML file 'SEDAPExpressTool.fxml'.";
@@ -314,25 +315,34 @@ public class SEDAPExpressTool extends Application implements SEDAPExpressSubscri
 	    this.tcpInterfaceComboBox.getSelectionModel().select(0);
 	}
 
-	// World Wind Initalisation
+	// World Wind Initialization
 	WorldWind.getNetworkStatus().setOfflineMode(true);
 
 	WorldWind.getDataFileStore().getEntries();
 
-	final Model model = (Model) WorldWind.createConfigurationComponent(AVKey.MODEL_CLASS_NAME);
+	final Model model = initializeWorldWindModel();
 
 	this.wwPanel = new WorldWindowGLJPanel();
 
-	this.wwPanel.getView().setEyePosition(gov.nasa.worldwind.geom.Position.fromDegrees(53.5356d, 8.156, 0));
-	((BasicOrbitView) this.wwPanel.getView()).setZoom(1200000d);
-	((BasicOrbitView) this.wwPanel.getView()).setFieldOfView(Angle.fromDegrees(45));
+	getOrbitView().setEyePosition(gov.nasa.worldwind.geom.Position.fromDegrees(53.5356d, 8.156, 0));
+	getOrbitView().setZoom(1200000d);
+	getOrbitView().setFieldOfView(Angle.fromDegrees(45));
 	this.wwPanel.setModel(model);
 
 	final BasicOrbitViewLimits limits = new BasicOrbitViewLimits();
 	limits.setZoomLimits(200, Double.MAX_VALUE);
+	getOrbitView().setOrbitViewLimits(limits);
 
-	((BasicOrbitView) this.wwPanel.getView()).setOrbitViewLimits(limits);
+	model.getLayers().addLast(this.contactsLayer);
+	model.getLayers().addLast(this.emissionsLayer);
 
+	this.mapPane.setContent(this.wwPanel);
+    }
+
+    /** To be overridden in order to provide a custom geographical model.*/
+    protected Model initializeWorldWindModel() {
+	Model model = (Model) WorldWind.createConfigurationComponent(AVKey.MODEL_CLASS_NAME);
+	
 	model.getLayers().remove(2);
 	model.getLayers().remove(2);
 	model.getLayers().remove(2);
@@ -388,10 +398,19 @@ public class SEDAPExpressTool extends Application implements SEDAPExpressSubscri
 
 	    }
 	});
-	model.getLayers().addLast(this.contactsLayer);
-	model.getLayers().addLast(this.emissionsLayer);
-
-	this.mapPane.setContent(this.wwPanel);
+	
+	return model;
+    }
+    
+    protected void cleanUp() {
+	if (this.communicator != null) {
+	    this.communicator.stopCommunicator();
+	}
+    }
+    
+    protected BasicOrbitView getOrbitView() {
+	Objects.requireNonNull(this.wwPanel,"WorldWind panel must be created first");
+	return (BasicOrbitView) this.wwPanel.getView();
     }
 
     @FXML

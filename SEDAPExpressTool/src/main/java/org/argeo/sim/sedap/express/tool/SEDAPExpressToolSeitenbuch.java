@@ -1,4 +1,4 @@
-package org.argeo.sim.sedap.express.mockup;
+package org.argeo.sim.sedap.express.tool;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -8,7 +8,7 @@ import java.util.Objects;
 
 import javax.swing.SwingUtilities;
 
-import de.bundeswehr.sedap.express.mockup.SECMockUpHMI;
+import de.bundeswehr.sedap.express.tool.SEDAPExpressTool;
 import gov.nasa.worldwind.Model;
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.WorldWindow;
@@ -27,7 +27,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class SECMockUpSeitenbuch extends SECMockUpHMI {
+public class SEDAPExpressToolSeitenbuch extends SEDAPExpressTool {
 	private Sector modelSector;
 
 	@Override
@@ -73,7 +73,7 @@ public class SECMockUpSeitenbuch extends SECMockUpHMI {
 	public void start(Stage primaryStage) throws Exception {
 
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("SECMockUpSeitenbuch.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("SEDAPExpressToolSeitenbuch.fxml"));
 
 			Parent root = loader.load();
 			Scene scene = new Scene(root);

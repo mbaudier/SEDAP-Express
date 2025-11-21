@@ -1,6 +1,7 @@
 module secmockup {
 
     exports de.bundeswehr.sedap.express.tool;
+    exports org.argeo.sim.sedap.express.tool;
 
     opens de.bundeswehr.sedap.express.tool;
 
