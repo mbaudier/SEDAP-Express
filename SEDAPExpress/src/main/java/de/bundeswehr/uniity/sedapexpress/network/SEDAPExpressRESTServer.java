@@ -58,9 +58,9 @@ public class SEDAPExpressRESTServer extends SEDAPExpressCommunicator implements 
 
     private Exception lastException = null;
 
-    private final int port;
+    private HttpServer server;
 
-    private int requestDelay;
+    private final int port;
 
     private boolean status = true;
 
@@ -75,12 +75,11 @@ public class SEDAPExpressRESTServer extends SEDAPExpressCommunicator implements 
      *
      * @param port Port to be used
      */
-    public SEDAPExpressRESTServer(final int port, int requestDelay) {
+    public SEDAPExpressRESTServer(final int port) {
 
 	super();
 
 	this.port = port;
-	this.requestDelay = requestDelay;
     }
 
     public boolean connect() {
@@ -90,10 +89,10 @@ public class SEDAPExpressRESTServer extends SEDAPExpressCommunicator implements 
 
 	try {
 
-	    HttpServer server = HttpServer.create(new InetSocketAddress(this.port), 64);
-	    server.setExecutor(this.threadPoolExecutor);
-	    server.createContext("/", this);
-	    server.start();
+	    this.server = HttpServer.create(new InetSocketAddress(this.port), 64);
+	    this.server.setExecutor(this.threadPoolExecutor);
+	    this.server.createContext("/", this);
+	    this.server.start();
 
 	    SEDAPExpressRESTServer.logger.logp(Level.INFO, "SEDAPExpressRESTServer", "run()", "REST server listening on port: " + this.port);
 	    logInput("REST server listening on port: " + this.port);
@@ -104,6 +103,7 @@ public class SEDAPExpressRESTServer extends SEDAPExpressCommunicator implements 
 	    SEDAPExpressRESTServer.logger.logp(Level.SEVERE, "SEDAPExpressRESTServer", "run()", "REST server cannot listening on port: " + this.port);
 	    logInput("REST server cannot listening on port: " + this.port);
 
+		lastException =e;
 	    return false;
 	}
 
@@ -129,6 +129,7 @@ public class SEDAPExpressRESTServer extends SEDAPExpressCommunicator implements 
 
 	    } catch (final Exception e) {
 
+		lastException =e;
 	    }
 
 	} else if ("POST".equals(exchange.getRequestMethod())) {
@@ -146,6 +147,7 @@ public class SEDAPExpressRESTServer extends SEDAPExpressCommunicator implements 
 		handleResponse(exchange, postBodyStr, "{\"success\":\"true\"}", 200);
 	    } catch (Exception e) {
 
+		lastException =e;
 		handleResponse(exchange, "", "{\"success\":\"false\"}", 400);
 	    }
 	}
@@ -168,7 +170,16 @@ public class SEDAPExpressRESTServer extends SEDAPExpressCommunicator implements 
     }
 
     @Override
-    public boolean sendSEDAPExpressMessage(SEDAPExpressMessage message) throws IOException {
+    public boolean sendSEDAPExpressMessage(SEDAPExpressMessage message) {
+
+	if (!this.status) {
+
+	    SEDAPExpressRESTServer.logger.logp(Level.INFO, "SEDAPExpressRESTServer", "sendSEDAPExpressMessage()", "Could not send message, the HTTP server has been stopped!");
+	    logInput("Could not send message, the HTTP server has been stopped!");
+
+	    this.lastException = new IOException("Could not send message, the HTTP server has been stopped!");
+	    return false;
+	}
 
 	SEDAPExpressRESTServer.messageBuffer.add(message);
 
@@ -179,6 +190,8 @@ public class SEDAPExpressRESTServer extends SEDAPExpressCommunicator implements 
     public void stopCommunicator() {
 
 	this.status = false;
+
+	this.server.stop(5000);
 
 	SEDAPExpressRESTServer.logger.logp(Level.INFO, "SEDAPExpressRESTServer", "stopCommunicator()", "REST server stopped");
 	logInput("REST server stopped");

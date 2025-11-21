@@ -110,7 +110,7 @@ public class CONTACT extends SEDAPExpressMessage {
     private String mmsi;
     private String icao;
 
-    private byte[] imageData;
+    private byte[] multimediaData;
 
     private String comment;
 
@@ -282,12 +282,12 @@ public class CONTACT extends SEDAPExpressMessage {
 	this.icao = icao;
     }
 
-    public byte[] getImageData() {
-	return this.imageData;
+    public byte[] getMultimediaData() {
+	return this.multimediaData;
     }
 
-    public void setImageData(byte[] imageData) {
-	this.imageData = imageData;
+    public void setMultimediaData(byte[] multimediaData) {
+	this.multimediaData = multimediaData;
     }
 
     public String getComment() {
@@ -326,7 +326,7 @@ public class CONTACT extends SEDAPExpressMessage {
 	this.sidc = null;
 	this.mmsi = null;
 	this.icao = null;
-	this.imageData = null;
+	this.multimediaData = null;
 	this.comment = null;
     }
 
@@ -360,14 +360,14 @@ public class CONTACT extends SEDAPExpressMessage {
      * @param sidc
      * @param mmsi
      * @param icao
-     * @param imageData
+     * @param multimediaData
      * @param comment
      */
     public CONTACT(Byte number, Long time, String sender, Classification classification, Acknowledgement acknowledgement, String mac, String contactID, DeleteFlag deleteFlag, Double latitude, Double longitude, Double altitude,
 	    Double relativeXDistance, Double relativeYDistance, Double relativeZDistance, Double speed, Double course, Double heading, Double roll, Double pitch, Double width, Double length, Double height, String name, Source source,
-	    char[] sidc, String mmsi, String icao, byte[] imageData, String comment) {
+	    char[] sidc, String mmsi, String icao, byte[] multimediaData, String comment) {
 	this(number, time, sender, classification, acknowledgement, mac, contactID, deleteFlag, latitude, longitude, altitude, relativeXDistance, relativeYDistance, relativeZDistance, speed, course, heading, roll, pitch, width, length,
-		height, name, source.toString(), sidc, mmsi, icao, imageData, comment);
+		height, name, source.toString(), sidc, mmsi, icao, multimediaData, comment);
 
     }
 
@@ -402,12 +402,12 @@ public class CONTACT extends SEDAPExpressMessage {
      * @param sidc
      * @param mmsi
      * @param icao
-     * @param imageData
+     * @param multimediaData
      * @param comment
      */
     public CONTACT(Byte number, Long time, String sender, Classification classification, Acknowledgement acknowledgement, String mac, String contactID, DeleteFlag deleteFlag, Double latitude, Double longitude, Double altitude,
 	    Double relativeXDistance, Double relativeYDistance, Double relativeZDistance, Double speed, Double course, Double heading, Double roll, Double pitch, Double width, Double length, Double height, String name, String source,
-	    char[] sidc, String mmsi, String icao, byte[] imageData, String comment) {
+	    char[] sidc, String mmsi, String icao, byte[] multimediaData, String comment) {
 
 	super(number, time, sender, classification, acknowledgement, mac);
 
@@ -433,7 +433,7 @@ public class CONTACT extends SEDAPExpressMessage {
 	this.sidc = sidc;
 	this.mmsi = mmsi;
 	this.icao = icao;
-	this.imageData = imageData;
+	this.multimediaData = multimediaData;
 	this.comment = comment;
     }
 
@@ -789,19 +789,19 @@ public class CONTACT extends SEDAPExpressMessage {
 	    }
 	}
 
-	// ImageData
+	// MultimediaData
 	if (message.hasNext()) {
 	    value = message.next();
 	    if (value.isBlank()) {
 		SEDAPExpressMessage.logger.logp(Level.INFO, "CONTACT", "CONTACT(Iterator<String> message)", "Optional field \"imageData\" is empty!");
 	    } else {
 		try {
-		    this.imageData = Base64.decode(value);
-		    if (this.imageData.length > 65000) {
-			SEDAPExpressMessage.logger.logp(Level.WARNING, "CONTACT", "CONTACT(Iterator<String> message)", "Optional field \"imageData\" exceeds 32768 bytes!");
+		    this.multimediaData = Base64.decode(value);
+		    if (this.multimediaData.length > 65000) {
+			SEDAPExpressMessage.logger.logp(Level.WARNING, "CONTACT", "CONTACT(Iterator<String> message)", "Optional field \"multimediaData\" exceeds 65000 bytes!");
 		    }
 		} catch (DecoderException e) {
-		    SEDAPExpressMessage.logger.logp(Level.SEVERE, "CONTACT", "CONTACT(Iterator<String> message)", "Optional field \"imageData\" could not be decoded from Base64!");
+		    SEDAPExpressMessage.logger.logp(Level.SEVERE, "CONTACT", "CONTACT(Iterator<String> message)", "Optional field \"multimediaData\" could not be decoded from Base64!");
 		}
 	    }
 	}
@@ -855,7 +855,7 @@ public class CONTACT extends SEDAPExpressMessage {
 
 		    (((this.icao == null) && (((CONTACT) obj).icao == null)) || ((this.icao != null) && this.icao.equals(((CONTACT) obj).icao))) &&
 
-		    Arrays.equals(this.imageData, ((CONTACT) obj).imageData) &&
+		    Arrays.equals(this.multimediaData, ((CONTACT) obj).multimediaData) &&
 
 		    (((this.comment == null) && (((CONTACT) obj).comment == null)) || ((this.comment != null) && this.comment.equals(((CONTACT) obj).comment)));
 
@@ -899,7 +899,7 @@ public class CONTACT extends SEDAPExpressMessage {
 
 		.append(this.sidc != null ? String.valueOf(this.sidc) : "").append(";").append(this.mmsi != null ? this.mmsi : "").append(";").append(this.icao != null ? this.icao : "").append(";")
 
-		.append(this.imageData != null ? Base64.toBase64String(this.imageData) : "").append(";")
+		.append(this.multimediaData != null ? Base64.toBase64String(this.multimediaData) : "").append(";")
 
 		.append((this.comment != null) ? Base64.toBase64String(this.comment.getBytes()) : "").toString());
     }

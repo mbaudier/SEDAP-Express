@@ -28,7 +28,7 @@ package de.bundeswehr.uniity.sedapexpress;
 import de.bundeswehr.uniity.sedapexpress.messages.HEARTBEAT;
 
 /**
- * Some utils for a Frodo based key exchange
+ * Give some information about that release.
  * 
  * @author Volker Voß
  *

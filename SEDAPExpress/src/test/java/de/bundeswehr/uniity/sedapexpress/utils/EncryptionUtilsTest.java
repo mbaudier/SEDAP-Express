@@ -37,7 +37,6 @@ import org.bouncycastle.util.encoders.Base64;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import de.bundeswehr.uniity.sedapexpress.utils.EncryptionUtils;
 import de.bundeswehr.uniity.sedapexpress.utils.EncryptionUtils.AESKeyLength;
 
 class EncryptionUtilsTest {

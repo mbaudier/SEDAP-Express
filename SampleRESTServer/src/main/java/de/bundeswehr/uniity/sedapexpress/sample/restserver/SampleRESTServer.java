@@ -64,7 +64,7 @@ public class SampleRESTServer implements SEDAPExpressSubscriber {
      */
     public SampleRESTServer() {
 
-	this.communicator = new SEDAPExpressRESTServer(50000, 1000);
+	this.communicator = new SEDAPExpressRESTServer(50000);
 	this.communicator.connect();
 
 	// Let's subscribe simple logging adapter for output via console

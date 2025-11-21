@@ -28,8 +28,6 @@ package de.bundeswehr.uniity.sedapexpress.messages;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import de.bundeswehr.uniity.sedapexpress.messages.SEDAPExpressMessage;
-
 class SEDAPExpressMessageTest {
 
     @Test
